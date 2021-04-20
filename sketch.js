@@ -16,7 +16,6 @@ function setup() {
   engine = Engine.create();
   world = engine.world;
   ground = new Ground(width/2,height,width,20);
-
   
    for (var k = 0; k <=width; k = k + 80) {
      divisions.push(new Divisions(k, height-divisionHeight/2, 10, divisionHeight));
@@ -61,15 +60,33 @@ function draw() {
   Engine.update(engine);
  
   
+  ground.display();
+
+  stroke(255);
+  
+  textSize(30);
+  text("500", 15, 490);
+  text("500", 95, 490);
+  text("500", 175, 490);
+  text("500", 255, 490);
+
+  text("100", 335, 490);
+  text("100", 415, 490);
+  text("100", 495, 490);
+  
+  text("200", 575, 490);
+  text("200", 655, 490);
+  text("200", 735, 490);
+
+  stroke("yellow")
+  line(0, 450, 800, 450);
+
    for (var i = 0; i < plinkos.length; i++) {
      
      plinkos[i].display();
      
    }
-   if(frameCount%60===0){
-     particles.push(new particle(random(width/2-30, width/2+30), 10,10));
-     score++;
-   }
+       
  
   for (var j = 0; j < particles.length; j++) {
    
@@ -79,4 +96,14 @@ function draw() {
      
      divisions[k].display();
    }
+
+   if(plinkos.x <= 255 && plinkos.x >= 0 && plinkos.y >= 490){
+      score = score + 500;
+    }
+
+}
+
+function mousePressed(){
+
+  particles.push(new Particle(mouseX, 25, 10,10));
 }
