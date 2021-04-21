@@ -97,13 +97,21 @@ function draw() {
      divisions[k].display();
    }
 
-   if(plinkos.x <= 255 && plinkos.x >= 0 && plinkos.y >= 490){
+   if(plinkos.x <= 255 && plinkos.x >= 0){
+      score = score + 500;
+    }
+
+    if(plinkos.x <= 495 && plinkos.x >= 335){
+      score = score + 500;
+    }
+
+    if(plinkos.x <= 735 && plinkos.x >= 575){
       score = score + 500;
     }
 
 }
 
 function mousePressed(){
-
   particles.push(new Particle(mouseX, 25, 10,10));
+  
 }
