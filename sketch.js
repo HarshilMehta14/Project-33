@@ -1,11 +1,12 @@
-var Engine = Matter.Engine,
-  World = Matter.World,
-  Events = Matter.Events,
-  Bodies = Matter.Bodies;
- 
+const Engine = Matter.Engine; 
+const World = Matter.World;
+const Events = Matter.Events;
+const Bodies = Matter.Bodies;
+
 var particles = [];
 var plinkos = [];
 var divisions = [];
+var last = true;
 
 var count = 0;
 var particle;
@@ -97,21 +98,38 @@ function draw() {
      divisions[k].display();
    }
 
-   if(plinkos.x <= 255 && plinkos.x >= 0){
-      score = score + 500;
+   
+  
+    if(particle !== undefined && last){
+      if(particle.body.position.x >= 15 && particle.body.position.x <= 275 && particle.body.position.y >= 490){
+        score = score + 500;
+        console.log(score);
+        last = false;
+        }
+        else if(particle.body.position.x >= 275 && particle.body.position.x <= 500 && particle.body.position.y >= 490){
+          score = score + 100;
+          console.log(score);
+          last = false;
+          }
+          else if(particle.body.position.x >= 500 && particle.body.position.x <= 740 && particle.body.position.y >= 490){
+            score = score + 200;
+            console.log(score);
+            last = false;
+            }
+    }
+ 
+
+    for(i=0;i<particles.length;i++){
+      particles[i].display();
     }
 
-    if(plinkos.x <= 495 && plinkos.x >= 335){
-      score = score + 500;
-    }
-
-    if(plinkos.x <= 735 && plinkos.x >= 575){
-      score = score + 500;
-    }
+  
 
 }
 
 function mousePressed(){
-  particles.push(new Particle(mouseX, 25, 10,10));
-  
+
+  particle=new Particle(mouseX, 10, 10, 10);
+  particles.push(particle);
+  last =true;
 }
